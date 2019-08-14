@@ -22,6 +22,15 @@
     },
     "location":{
       "value": ""
+    },
+    "automationAccountName":{
+      "value": ""
+    },
+    "automationAccountResourceGroup":{
+      "value": ""
+    },
+    "NodeConfigurationName":{
+      "value": ""
     }
   }
 }
