@@ -30,7 +30,7 @@
     },
     "windowsOSVersion": {
       "type": "string",
-      "defaultValue": "2019-Datacenter",
+      "defaultValue": "2016-Datacenter",
       "allowedValues": [
         "2008-R2-SP1",
         "2012-Datacenter",
@@ -55,7 +55,7 @@
   "variables": {
     "nicName": "[concat(parameters('VMName'),'-NIC')]",
     "osDiskName": "[concat(parameters('VMName'),'-OS')]",
-    "vnetId" : "[resourceId(parameters('vNetRG'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vNetName'), parameters('SubNetName'))]",
+    "vnetId" : "[resourceId(parameters('vNetRG'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vNetName'), parameters('SubNetName'))]"
   },
   "resources": [
     {
