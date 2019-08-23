@@ -64,9 +64,7 @@
   "variables": {
     "nicName": "[concat(parameters('VMName'),'-NIC')]",
     "osDiskName": "[concat(parameters('VMName'),'-OS')]",
-    "vnetId" : "[resourceId(parameters('vNetRG'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vNetName'), parameters('SubNetName'))]",
-    "RegistrationUrl": "reference(resourceId('Microsoft.Automation/automationAccounts/', parameters('automationAccountName')), '2015-10-31').RegistrationUrl"
-
+    "vnetId" : "[resourceId(parameters('vNetRG'), 'Microsoft.Network/virtualNetworks/subnets', parameters('vNetName'), parameters('SubNetName'))]"
   },
   "resources": [
     {
@@ -126,38 +124,7 @@
           ]
         }
       }
-    },
-    {   "name": "[concat(parameters('VMName'),'/Microsoft.Powershell.DSC')]",
-      "type": "Microsoft.Compute/virtualMachines/extensions",
-      "apiVersion": "2018-06-01",
-      "location": "parameters('location')",
-      "dependsOn": [
-          "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName'))]"
-      ],
-      "properties": {
-          "publisher": "Microsoft.Powershell",
-          "type": "DSC",
-          "typeHandlerVersion": "2.76",
-          "autoUpgradeMinorVersion": true,
-          "settings": {
-              "RegistrationUrl" : "[variables('RegistrationUrl')]",
-              "NodeConfigurationName" : "[parameters('NodeConfigurationName')]",
-              "ConfigurationMode": "applyAndMonitor",
-              "RebootNodeIfNeeded": true,
-              "ActionAfterReboot": "continueConfiguration",
-              "AllowModuleOverwrite": true,
-              "ConfigurationModeFrequencyMins": 15,
-              "RefreshFrequencyMins": 30
-          },
-          "protectedSettings": {
-              "configurationArguments": {
-                  "RegistrationKey": {
-                      "userName": "NOT_USED",
-                      "Password": "[listKeys(resourceId(parameters('automationAccountResourceGroup'),'Microsoft.Automation/automationAccounts/', parameters('automationAccountName')), '2018-01-15').Keys[0].value]"                        }
-              }
-          }
-      }
-  },
+    }
   ],
   "outputs": {
   }
